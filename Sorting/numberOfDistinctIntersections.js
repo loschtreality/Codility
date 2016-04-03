@@ -54,24 +54,50 @@
 
 function solution(A){
   var count = 0;
-  var dimentions = [];
+  var coordinates = [];
   for (var i = 0; i < A.length; i++) {
-    var relativity = [i - A[i], i + A[i]];
-    dimentions.push(relativity);
+    coordinates.push([i - A[i],i + A[i]]);
   }
-    for (var h = 0; h < dimentions; h++) {
-      //array[h]
+  for (var j = 0; j < A.length; j++) {
+    for (var k = j+1; k < A.length; k++) {
+      if (j >= coordinates[k][0] && j <= coordinates[k][1]) {
+        count++;
+      }
     }
-  console.log(A);
-  console.log(dimentions);
-  // for (var j = 0; j < array.length; j++) {
-  //   if (dimentions[j]) {
-  //     count++;
-  //   }
-  // }
+  }
 
-return count;
+  console.log(coordinates);
+
+  return count;
 }
 
+console.log(solution([1,5,2,1,4,0])); //expects 11
 
-console.log(solution([1,5,2,1,4,0]));
+
+
+
+
+
+///Sean
+//
+// var mainArray = [];
+// var sortedArray = [];
+//
+// function makeCircle(x,y) {
+//   var a = x-y;
+//   var b = x+y;
+//   for (var i = a; i <= b; i++) {
+//     mainArray.push(i);
+//   }
+// }
+//
+//
+//
+//
+// function solution(A){
+//
+//
+// return A;
+// }
+
+//console.log(solution([1,5,2,1,4,0])); //expects 11
