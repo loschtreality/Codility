@@ -55,14 +55,16 @@
 function solution(A){
   var count = 0;
   var coordinates = [];
+  var testSort = A.slice();
+  console.log(A,'A');
+  console.log(testSort,'TS');
   for (var i = 0; i < A.length; i++) {
     coordinates.push([i - A[i],i + A[i]]);
   }
+
   for (var j = 0; j < A.length; j++) {
-    for (var k = j+1; k < A.length; k++) {
-      if (j >= coordinates[k][0] && j <= coordinates[k][1]) {
-        count++;
-      }
+    for (var k = 0; k < A.length; k++) {
+      //Loop through and check end value
     }
   }
 
