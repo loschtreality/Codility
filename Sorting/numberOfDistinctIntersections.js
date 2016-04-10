@@ -34,41 +34,30 @@
 // expected worst-case time complexity is O(N*log(N));
 // expected worst-case space complexity is O(N), beyond input storage (not counting the storage required for input arguments).
 // Elements of input arrays can be modified.
-//
-
-
-// function solution(A){
-//   var count = 0;
-//   var dimentions = A.sort(function(a,b){return a-b;}).map(function(element){
-//     return element * 2;
-//   });
-//   console.log(dimentions);
-//   for (var i = 0; i < dimentions.length-1; i++) {
-//     if (dimentions[i] <= dimentions[i+1]) {
-//       count++;
-//     }
-//   }
-// return count;
-// }
 
 
 function solution(A){
-  var count = 0;
   var coordinates = [];
-  var testSort = A.slice();
-  console.log(A,'A');
-  console.log(testSort,'TS');
+  var count = 1;
+
   for (var i = 0; i < A.length; i++) {
     coordinates.push([i - A[i],i + A[i]]);
   }
 
-  for (var j = 0; j < A.length; j++) {
-    for (var k = 0; k < A.length; k++) {
-      //Loop through and check end value
+  //console.log(coordinates,'before');
+
+  coordinates.sort(function(a,b){ return a[0] - b[0];});
+
+  //console.log(coordinates);
+
+  for (var j = 0; j <= A.length-1; j++) {
+    for (var k = j+1; k < A.length-1; k++) {
+      if (j >= coordinates[k][0] || j <= coordinates[k][1]) {
+        count++;
+      }
     }
   }
 
-  console.log(coordinates);
 
   return count;
 }
@@ -76,30 +65,9 @@ function solution(A){
 console.log(solution([1,5,2,1,4,0])); //expects 11
 
 
-
-
-
-
-///Sean
-//
-// var mainArray = [];
-// var sortedArray = [];
-//
-// function makeCircle(x,y) {
-//   var a = x-y;
-//   var b = x+y;
-//   for (var i = a; i <= b; i++) {
-//     mainArray.push(i);
-//   }
-// }
-//
-//
-//
-//
-// function solution(A){
-//
-//
-// return A;
-// }
-
-//console.log(solution([1,5,2,1,4,0])); //expects 11
+//0: 3
+//1:
+//2:
+//3:
+//4:
+//5:
