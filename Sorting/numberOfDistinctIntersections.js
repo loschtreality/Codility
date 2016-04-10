@@ -46,19 +46,26 @@ function solution(A){
     lower_range.push(i - A[i]);
   }
 
-  upper_range.sort();
-  lower_range.sort();
+  upper_range.sort(function(a,b){return a-b;});
+  lower_range.sort(function(a,b){return a-b;});
+
+  console.log(upper_range);
+  console.log(lower_range);
 
   var stopping_Point = 0;
 
   for (var j = 0, k = A.length; j < k; j++) {
-    while (upper_range[j] >= lower_range[stopping_Point] && stopping_Point <= k) {
+    while (upper_range[j] >= lower_range[stopping_Point] && stopping_Point < k) {
       stopping_Point++;
     }
     count += stopping_Point - j - 1;
   }
 
-  return count > 10000000 ? -1 : count;
+  if (count > 10000000) {
+    return -1;
+  }
+  return count;
 }
 
 console.log(solution([1,5,2,1,4,0])); //expects 11
+console.log(solution([1, 5, 8, 7, 8, 4, 8, 5, 0, 5])); //expects 41
