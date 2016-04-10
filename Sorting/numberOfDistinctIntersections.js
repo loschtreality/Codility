@@ -49,9 +49,6 @@ function solution(A){
   upper_range.sort(function(a,b){return a-b;});
   lower_range.sort(function(a,b){return a-b;});
 
-  console.log(upper_range);
-  console.log(lower_range);
-
   var stopping_Point = 0;
 
   for (var j = 0, k = A.length; j < k; j++) {
