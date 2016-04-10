@@ -37,37 +37,28 @@
 
 
 function solution(A){
-  var coordinates = [];
-  var count = 1;
+  var upper_range = [];
+  var lower_range = [];
+  var count = 0;
 
   for (var i = 0; i < A.length; i++) {
-    coordinates.push([i - A[i],i + A[i]]);
+    upper_range.push(i + A[i]);
+    lower_range.push(i - A[i]);
   }
 
-  //console.log(coordinates,'before');
+  upper_range.sort();
+  lower_range.sort();
 
-  coordinates.sort(function(a,b){ return a[0] - b[0];});
+  var stopping_Point = 0;
 
-  //console.log(coordinates);
-
-  for (var j = 0; j <= A.length-1; j++) {
-    for (var k = j+1; k < A.length-1; k++) {
-      if (j >= coordinates[k][0] || j <= coordinates[k][1]) {
-        count++;
-      }
+  for (var j = 0, k = A.length; j < k; j++) {
+    while (upper_range[j] >= lower_range[stopping_Point] && stopping_Point <= k) {
+      stopping_Point++;
     }
+    count += stopping_Point - j - 1;
   }
 
-
-  return count;
+  return count > 10000000 ? -1 : count;
 }
 
 console.log(solution([1,5,2,1,4,0])); //expects 11
-
-
-//0: 3
-//1:
-//2:
-//3:
-//4:
-//5:
