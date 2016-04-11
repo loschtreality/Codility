@@ -41,51 +41,12 @@
 // expected worst-case space complexity is O(1), beyond input storage (not counting the storage required for input arguments).
 // Elements of input arrays can be modified.
 
-// function maxThree(A){
-//   A.sort(function(a,b){return a-b;});
-//   return Math.max((A[0] * A[1] * A[A.length-1]), (A[A.length-1] * A[A.length-2] * A[A.length-3]));
-// }
-
-
 function maxThree(A){
-  var secondLow;
-  var lowest;
-  var thirdHighest;
-  var secondHighest;
-  var highest;
-  var comboUpper;
-  var comboLower;
-  for (var i = 0; i < A.length; i++) {
-    //Grab first high value
-    if (A[i] >= 0 && highest === undefined) {
-      highest = A[i];
-    }
-    //Grab first low value
-    if (A[i] <= 0 && lowest === undefined) {
-      lowest = A[i];
-    }
-    //Change highest value
-    if (A[i] > highest) {
-
-    }
-    if (A[i] > highest) {
-      thirdHighest = secondHighest;
-      secondHighest = highest;
-      highest = A[i];
-    }
-  }
-
-  comboUpper = thirdHighest * secondHighest * highest;
-  comboLower = secondLow * lowest * highest;
-
-  if (comboLower > comboUpper) {
-    return comboLower;
-  }else {
-    return comboUpper;
-  }
+  A.sort(function(a,b){return a-b;});
+  return Math.max((A[0] * A[1] * A[A.length-1]), (A[A.length-1] * A[A.length-2] * A[A.length-3]));
 }
 
 
-var test = [4, 5, 1, 0];
+var test = [4, 5, 1, 0]; //20
 
 console.log(maxThree(test));
