@@ -27,16 +27,21 @@ function solution(S) {
     S = S.split('');
     var stack = [];
 
+    if (S[0] === "}" || S[0] === "]" || S[0] === ")") {
+        return 0;
+    }
+
     for (var i = 0; i < S.length; i++) {
-        if (S[i] === "{" || S[i] === "[" || S[i] === "(") {
-            stack.push(S[i]);
+        if (S[i] === "}" && stack[stack.length - 1] === "{" || S[i] === "]" && stack[stack.length - 1] === "[" || S[i] === ")" && stack[stack.length - 1] === "(") {
+            stack.length > 0 ? stack.pop() : 0;
         } else {
-            if (S[i] === "}" && stack[stack.length - 1] === "{" || S[i] === "]" && stack[stack.length - 1] === "[" || S[i] === ")" && stack[stack.length - 1] === "(") {
-                stack.pop();
-            }
+            stack.push(S[i]);
         }
     }
-    return stack.length === 0 ? 1 : 0;
+    if (stack.length === 0) {
+        return 1;
+    }
+    return 0;
 }
 
 console.log(solution("{[()()]}")); //1
