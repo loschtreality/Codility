@@ -26,14 +26,19 @@
 function solution(S) {
     S = S.split('');
     var stack = [];
-
-    if (S[0] === "}" || S[0] === "]" || S[0] === ")") {
+    var right_brackets = ["}", "]", ")"];
+    var brackets = {
+        "{": right_brackets[0],
+        "[": right_brackets[1],
+        "(": right_brackets[2]
+    };
+    if (right_brackets.indexOf(S[0]) !== -1) {
         return 0;
     }
 
     for (var i = 0; i < S.length; i++) {
-        if (S[i] === "}" && stack[stack.length - 1] === "{" || S[i] === "]" && stack[stack.length - 1] === "[" || S[i] === ")" && stack[stack.length - 1] === "(") {
-            stack.length > 0 ? stack.pop() : 0;
+        if (brackets[stack[stack.length-1]] === S[i]) {
+          stack.pop();
         } else {
             stack.push(S[i]);
         }
