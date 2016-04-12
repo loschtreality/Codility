@@ -43,12 +43,13 @@
 // Elements of input arrays can be modified.
 
 
-function solution(A, B) {
-
-    function filterFish(a,b) {
-
+function solution(a, b) {
+var zeros_and_ones = true;
+    while (zeros_and_ones) {
+      zeros_and_ones = false;
         for (var i = 0; i < b.length; i++) {
             if (b[i] === 1 && b[i + 1] === 0) {
+              zeros_and_ones = true;
                 if (a[i] > a[i + 1]) {
                     a[i + 1] = a[i];
                     a[i] = null;
@@ -66,12 +67,6 @@ function solution(A, B) {
         B = b.filter(function(el){ return el !== null;});
     }
 
-    filterFish(A,B);
-
-    if (B.indexOf(0) !== -1 && B.indexOf(1) !== -1) {
-      filterFish(A,B);
-    }
-
     return B.length;
 }
 
@@ -80,31 +75,3 @@ var beta = [0,1,0,0,0];
 
 
 console.log(solution(alpha,beta));
-
-// def solution(a, b)
-//   found_one_and_zero = true
-//   while found_one_and_zero == true
-//     found_one_and_zero = false
-//     (0..b.size - 2).each do |i|
-//       if b[i] == 1 && b[i + 1] == 0
-//         found_one_and_zero = true
-//         if a[i] > a[i + 1]
-//           a[i + 1] = a[i]
-//           a[i], b[i]  = nil, nil
-//           b[i + 1]= 1
-//         else
-//           a[i] = a[i + 1]
-//           b[i] = 0
-//           a[i + 1], b[i + 1] = nil, nil
-//         end
-//       end
-//       #puts "b: #{b}"
-//       #puts "a: #{a}"
-//     end
-//     #puts "found_one_and_zero: #{found_one_and_zero}"
-//     b.select! {|fish| !fish.nil?}
-//     a.select! {|fish| !fish.nil?}
-//   end
-//   #puts "b: #{b}"
-//   b.select {|fish| !fish.nil?}.size
-// end
