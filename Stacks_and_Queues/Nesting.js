@@ -26,9 +26,14 @@
 function solution(S) {
   var stack = [];
 
+  if (S.length === 0) {
+    return 1;
+  }
+  
   if (S.indexOf("(") === -1 || S.indexOf(")") === -1 || S[0] === ")") {
     return 0;
   }
+
 
   for (var i = 0; i < S.length; i++) {
     if (S[i] === "(") {
@@ -50,3 +55,4 @@ console.log(solution("(()(())())")); // 1
 console.log(solution("(())(())())")); // 0
 console.log(solution("())")); // 0
 console.log(solution("(((((()")); // 0
+console.log(solution("")); // 1
