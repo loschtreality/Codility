@@ -43,35 +43,28 @@
 // Elements of input arrays can be modified.
 
 
-function solution(a, b) {
-var zeros_and_ones = true;
-    while (zeros_and_ones) {
-      zeros_and_ones = false;
-        for (var i = 0; i < b.length; i++) {
-            if (b[i] === 1 && b[i + 1] === 0) {
-              zeros_and_ones = true;
-                if (a[i] > a[i + 1]) {
-                    a[i + 1] = a[i];
-                    a[i] = null;
-                    b[i] = null;
-                    b[i + 1] = 1;
-                } else {
-                    a[i] = a[i + 1];
-                    b[i] = 0;
-                    a[i + 1] = null;
-                    b[i + 1] = null;
-                }
-            }
-        }
-        A = a.filter(function(el){ return el !== null;});
-        B = b.filter(function(el){ return el !== null;});
+function solution(a, b){
+  var stack = [[a[0], b[0]]];
+  if (a.length > 1) {
+    for(var i = 1; i < a.length; i++){
+      if (stack[stack.length-1][1] <= b[i]) {
+        stack.push([a[i], b[i]]);
+        continue;
+      }
+      while (stack.length > 0 && stack[stack.length-1][0] < a[i] && stack[stack.length-1][1] > b[i]){
+        stack.pop();
+      }
+      if (stack.length === 0 || stack[stack.length-1][1] === b[i]){
+        stack.push([a[i], b[i]]);
+      }
     }
-
-    return B.length;
+  }
+  return stack.length;
 }
 
-var alpha = [4,3,2,1,5];
-var beta = [0,1,0,0,0];
+
+ var alpha = [4,3,2,1,7,5];
+ var beta =  [0,1,0,0,1,0];
 
 
 console.log(solution(alpha,beta));
