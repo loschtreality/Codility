@@ -31,3 +31,15 @@
 // expected worst-case time complexity is O(N);
 // expected worst-case space complexity is O(1), beyond input storage (not counting the storage required for input arguments).
 // Elements of input arrays can be modified.
+
+function solution(A) {
+  let unmatched = A[0]
+
+  for (var i = 1; i < A.length; i++) {
+    unmatched ^= A[i]
+  }
+
+  return unmatched
+}
+
+console.log(solution([9,3,9,3,7,9,9])) // 7
