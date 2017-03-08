@@ -48,13 +48,13 @@ function solution(A) {
   const resultingDiffs = []
   let sum = 0
 
+  if (A.length === 1) { return Math.abs(A[0]) }
+  if (A.length === 2) { return Math.abs(A[0] - A[1]) }
+
   for (let i = 0, len = A.length; i < len; i++) {
     resultingDiffs.push(A[i] + sum)
     sum += Math.abs(A[i])
   }
-
-  console.log(sum, 'sum')
-  console.log(resultingDiffs, 'diffs')
 
   for (let j = A.length - 1, end = 0; j > end; j--) {
     sum -= A[j]
