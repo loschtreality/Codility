@@ -45,31 +45,28 @@
 
 
 function solution(A) {
-  let greedArray = []
-  let greedUp = 0
-  let greedDown = 0
+  const resultingDiffs = []
+  let sum = 0
 
-  // Sum the greed up and push into the greedArray
-  // keep track of a total with greedUp
-  for (var i = 0; i < A.length; i++) {
-    greedArray.push(A[i] + greedUp)
-    greedUp += A[i]
+  for (let i = 0, len = A.length; i < len; i++) {
+    resultingDiffs.push(A[i] + sum)
+    sum += Math.abs(A[i])
   }
 
-  // Loop backwards, updating the greedArray with the difference
-  // between the greedUp, accumulating greedDown, and array
-  for (var j = A.length - 1; j > 0; j--) {
-    let diff = greedUp - greedDown - A[j]
-    greedArray[j] = Math.abs(A[j] - diff)
-    greedDown += A[j]
-    greedUp -= A[j]
+  console.log(sum, 'sum')
+  console.log(resultingDiffs, 'diffs')
+
+  for (let j = A.length - 1, end = 0; j > end; j--) {
+    sum -= A[j]
+    resultingDiffs[j] = Math.abs(resultingDiffs[j] - sum)
   }
 
-  return Math.min.apply(null, greedArray)
+  return Math.min.apply(null, resultingDiffs)
 }
 
 
-console.log(solution([3,1,2,4,3])) // answer: 1, greed: 7, 5, 1, 7
+console.log(solution([3,1,2,4,3])) //  1, greed: 7, 5, 1, 7
+console.log(solution([-1000, 1000])) // answer: 2000, greed: 2000, 2000
 
 // P = 1, difference = |3 − 10| = 7
 // P = 2, difference = |4 − 9| = 5
