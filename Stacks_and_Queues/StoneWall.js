@@ -25,21 +25,25 @@
 // expected worst-case space complexity is O(N), beyond input storage (not counting the storage required for input arguments).
 // Elements of input arrays can be modified.
 
-function solution(H) {
-  const stack = [H.shift()]
-  let blocks = 1
+function solution(h) {
+  const stack = []
+  let blockCount = 0
 
-  H.forEach((height) => {
-    if (stack.includes(height)) {
-      const lastTime = stack.lastIndexOf(height)
-      const anyHeightLess = stack.slice(lastTime).some((num) => num < height)
-      if (anyHeightLess) { blocks++ }
-    } else {
-      blocks++
+  h.forEach((height) => {
+
+    while (stack.length > 0 && stack[stack.length - 1] > height) {
+      stack.pop()
     }
-    stack.push(height)
+
+    if (stack[stack.length - 1] !== height) {
+      blockCount++
+      stack.push(height)
+    }
+
+
   })
-  return blocks
+
+  return blockCount
 }
 
 const array = [8, 8, 5, 7, 9, 8, 7, 4, 8]
